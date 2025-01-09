@@ -26,6 +26,7 @@ bool dfs(int source, int destination, std::unordered_map<int, std::vector<int>>&
 }
 
 bool dfsIterative(int source, int destination, std::unordered_map<int, std::vector<int>>& nodes, std::unordered_set<int>& visited) {
+    // Create a stack for Depth first search non recursively
     std::stack<int> dfsStack;
 
     dfsStack.push(source);
@@ -34,10 +35,12 @@ bool dfsIterative(int source, int destination, std::unordered_map<int, std::vect
         int current = dfsStack.top();
         dfsStack.pop();
 
+        // if we got to our destination, return true
         if(current == destination) {
             return true;
         } 
 
+        // If we have not visited this vertex before, add it to visited, then add all its neighbors to the stack
         if (visited.find(current) == visited.end()) {
             visited.insert(current);
             for (auto neighbor : nodes[current]) {
